@@ -7,7 +7,7 @@ const product = productSchema
     try {
         const {name, category, price} = req.body
 
-        if (!req.files || !name || !category || !price) return res.status(400).json({
+        if (!req.file || !name || !category || !price) return res.status(400).json({
             success: false,
             message: "invalid credentials"
         })
@@ -16,7 +16,8 @@ const product = productSchema
             name,
             category,
             price,
-            images: req.files.map(f => f.path)
+            url: req.file.location,
+            key: req.file.key,
         })
 
         res.status(201).json({
