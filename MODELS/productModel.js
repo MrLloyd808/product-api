@@ -6,6 +6,9 @@ const productSchema = new mongoose.Schema({
     key: String,
     category: String,
     price: String
+},
+ {
+    timestamps: true
 })
 
 module.exports = mongoose.model("product", productSchema)
