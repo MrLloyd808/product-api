@@ -16,8 +16,11 @@ const product = productSchema
             name,
             category,
             price,
-            url: req.file.location,
-            key: req.file.key,
+            image: {
+                url: req.file.location,
+                key: req.file.key
+            }
+        
         })
 
         res.status(201).json({
