@@ -11,7 +11,7 @@ const upload = multer({
         acl: "public-read", 
         key: (req, file, cb) => {
           const filebytes = crypto.randomBytes(7).toString("hex")
-          cb(null, file.originalname + filebytes)
+          cb(null, filebytes + file.originalname)
         }
     })
 })
