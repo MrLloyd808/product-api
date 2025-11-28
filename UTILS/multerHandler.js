@@ -1,4 +1,5 @@
 require("dotenv")
+const crypto = require("crypto")
 const multer = require("multer")
 const multerS3 = require("multer-s3")
 const s3 = require("./s3client")
@@ -9,7 +10,8 @@ const upload = multer({
         bucket: process.env.AWS_BUCKET_NAME,
         acl: "public-read", 
         key: (req, file, cb) => {
-            cb(null, file.originalname + "-" + Date.now())
+          const filebytes = crypto.randomBytes(7).toString("hex")
+          cb(null, file.originalname + filebytes)
         }
     })
 })
